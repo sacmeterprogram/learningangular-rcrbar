@@ -24,7 +24,13 @@ export class AtmComponent implements OnInit{
   }
 
   onBalance(number){
-    return number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    this.balanceFormatted = number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    if (number < 0){
+      return "("+Math.abs(number).toLocaleString('en-US', { style: 'currency', currency: 'USD' })+")";
+    }else{
+      return number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    }
+    
   }
 
   onWithdraw(){
