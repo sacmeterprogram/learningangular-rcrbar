@@ -1,0 +1,13 @@
+button {
+  display: block;
+  background-color: #c0392b;
+  width: 300px;
+  height: 100px;
+  line-height: 100px;
+  margin: auto;
+  color: #fff;
+  position: absolute;
+  border-radius: 5px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+  transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
+}

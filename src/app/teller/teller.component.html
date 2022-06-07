@@ -1,0 +1,43 @@
+<h1>Teller View</h1>
+<div class="main">
+  <section class="display">
+    <!-- Display: Customer information except for when inquiring about transaction -->
+    <h4>Customer Information</h4>
+   
+    <p>{{ bankService.account.age }}</p>
+    <p>{{ bankService.account.address.street }}</p>
+    <p>{{ bankService.account.address.city }}<br>
+     {{ bankService.account.address.country }}<br>
+     
+    </p>
+   
+    <!-- Display: if inquiring about transactions -->
+    <h4>Last 3 Transactions</h4>
+    <div *ngIf="isShow">
+   
+    <li *ngFor="let transaction of bankService.account.transactions  | slice:0:3">
+        {{ transaction.date }}  - {{ transaction.type | uppercase }}  (${{ transaction.amount }} {{ transaction.currency | uppercase }} USD)
+      </li>
+    </div>
+  </section>
+  <aside class="options">
+    <section class="balance">
+          <input type="number" min="1" max="1000"    [(ngModel)]="numberNew" />
+      
+      <!-- Display customer balance -->
+      {{ bankService.account.balance | number:0 }} USD
+    </section>
+    <!-- Add functionality to the buttons below -->
+    <ul class="options-list">
+      <li class="options-item">
+        <button *ngIf="balance > 1" (click)="onWithdraw()">Widthdrawl for Customer</button>
+      </li>
+      <li class="options-item">
+        <button (click)="onDeposit()">Deposit for Customer</button>
+      </li>
+     <li class="options-item">
+        <button (click)="changeShow()">Transactions History</button>
+      </li>
+    </ul>
+  </aside>
+</div>

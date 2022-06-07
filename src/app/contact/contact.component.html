@@ -1,0 +1,119 @@
+<h1>Contact View</h1>
+<div class="main">
+  <section class="display">
+    <!-- Display: Customer information except for when inquiring about transaction -->
+    <h4>Contact Us</h4>
+   
+    <p>Address: 1234 street st.<br>
+      San Diego, CA 12345<br>
+      canada
+    </p>
+  
+    <br><br>
+    <!-- Display: if inquiring about transactions -->
+   
+  </section>
+  
+   <aside class="options">
+    
+<!--<div class="jumbotron text-center" *ngIf="submitted">-->
+<!--    <h2>Thanks for your submission!</h2>-->
+<!--    <p>We appreciate it!</p>-->
+<!--    <h3>{{ diagnostic }}</h3>-->
+<!--</div>-->
+
+<form (ngSubmit)="processForm()" *ngIf="!submitted" #form="ngForm">
+
+    Is Form Valid? {{ form.valid }}
+
+    <div class="form-group" 
+        [ngClass]="{ 
+            'has-error': name.invalid && name.touched,
+            'has-success': name.valid && name.touched 
+        }">
+        <label class="control-label">Name</label>
+        <input type="text" class="form-control" name="name" required
+            [(ngModel)]="user.name"
+            #name="ngModel">
+
+        <span class="help-block" *ngIf="name.invalid && name.touched">
+            Name is required.
+        </span>
+    </div>
+
+    <div class="form-group" 
+        [ngClass]="{ 
+            'has-error': email.invalid && email.touched,
+            'has-success': email.valid && email.touched 
+        }">
+        <label class="control-label">Email</label>
+        <input type="text" class="form-control" name="email" required
+            [(ngModel)]="user.email"
+            #email="ngModel"> 
+
+        <span class="help-block" *ngIf="email.invalid && email.touched">
+            Email is required.
+        </span>
+    </div>
+    <div class="form-group"
+    [ngClass]="{ 
+            'has-error': message.invalid && message.touched,
+            'has-success': message.valid && message.touched 
+        }">
+       <label class="control-label">Message</label>
+      <textarea type="text"  class="form-control" name="message" required
+      [(ngModel)]="user.message"
+            #message="ngModel" required>Message</textarea>
+             <span class="help-block" *ngIf="message.invalid && message.touched">
+            Message is required.
+        </span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+    </div>
+
+    {{ diagnostic }}
+
+</form> 
+     
+     
+    <!--<section class="contactForm">-->
+      <!-- Display contact form -->
+      
+    <!--</section>-->
+    <!-- Add functionality to the buttons below -->
+
+<!--<form ([formGroup])="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">-->
+
+ 
+<!--  <input type="text" name="firstname" value="name">-->
+<!--   <small [hidden]="myForm.controls.name.valid || (myForm.controls.name.pristine && !submitted)">-->
+<!--        Name is required (minimum 5 characters).-->
+<!--    </small>-->
+<!--    <input -->
+<!--          type="text" class="form-control"-->
+<!--          placeholder="Your email" -->
+<!--          ([formControl])="email"-->
+<!--          [style.borderColor]="email.errors && email.dirty? 'red' : null"-->
+<!--          #emailInput><hr>-->
+
+  <!--<input type="text" name="email" value="Email">-->
+  
+<!--  <textarea name="message" rows="10" cols="30">Message</textarea>-->
+
+<!--  <input (click)="onSubmit()" type="submit" value="SUBMIT">-->
+<!--</form> -->
+
+<!--<fieldset ngModelGroup="name">-->
+<!--  <label>Firstname:</label>-->
+<!--  <input type="text" name="firstname" [(ngModel)]="firstname">-->
+<!--  <p>You entered {{firstname}}</p>-->
+
+<!--  <label>Lastname:</label>-->
+<!--  <input type="text" name="lastname" [(ngModel)]="lastname">-->
+<!--  <p>You entered {{lastname}}</p>-->
+<!--</fieldset>-->
+ </aside>
+
+</div>

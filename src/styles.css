@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+/*@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');*/
+body {
+      background-color: #BFDBF7;
+      /*font-family: 'Orbitron', sans-serif;*/
+      font-family: 'Lato', sans-serif;
+      
+      
+}
+h1, h2, h3{
+    font-family: 'Orbitron', sans-serif;
+    color: #053C5E;
+}
+.nav a{
+    color: #1F7A8C;
+    font-weight: bold;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    text-decoration:  none;
+    padding: 10px;
+}
+.nav a:hover {
+    background-color: #F9F8F8;
+    border: 2px solid #1F7A8C;
+}
+.nav {
+    margin: 40px;
+}
+section h4 {
+    color: #A6ECE0;
+    text-shadow: 1px 1px black;
+    
+}
+
+.options-list, .options-item {
+    list-style: none;
+    padding: 5px;
+}
+section, aside {
+      text-shadow: 1px 1px black;
+      
+}
+ul {
+    list-style: none;
+    
+}
