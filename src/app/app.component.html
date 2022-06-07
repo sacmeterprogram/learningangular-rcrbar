@@ -1,10 +1,18 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    {{ bankName }}
-  </h1>
+<!-- Home page with tags for embedded angular components -->
+
+<div style="text-align:center;">
+  <div class="bankHeader">
+    <!-- show the bank name pulling from hard coded object -->
+    <h1>
+      {{ bankName }} 
+    </h1>
+    <img style="padding-left:10px" src="https://www.verisk.com/siteassets/logos/svg/verisk-logo1.svg">
+  </div>
+  <!-- app-nav will render the navigation menu buttons -->
   <app-nav></app-nav>
 
+  <!-- router-outlet will display the selected navigation menu - show 'Make a Transaction' by default -->
   <router-outlet></router-outlet>
+
 </div>
 

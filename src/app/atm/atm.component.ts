@@ -9,9 +9,9 @@ import { ContactComponent } from '../contact/contact.component';
 })
 export class AtmComponent implements OnInit{
   balance: number;
+  balanceFormatted: string;
   amount: number = 100;
   @Input() numberNew: number = 1;
-
   
   constructor(public bankService: BankService) { 
     console.log(bankService);
@@ -20,13 +20,19 @@ export class AtmComponent implements OnInit{
   onDeposit(){
     this.bankService.deposit(this.numberNew);
     this.balance = this.bankService.getBalance();
+    this.balanceFormatted = this.onBalance(this.balance);
+  }
+
+  onBalance(number){
+    return number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
   }
 
   onWithdraw(){
     this.bankService.withdraw(this.numberNew);
     this.balance = this.bankService.getBalance();
-   
+    this.balanceFormatted = this.onBalance(this.balance);
   }
+
   
    
   onGetTransactions(){

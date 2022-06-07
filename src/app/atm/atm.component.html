@@ -1,38 +1,11 @@
 
-<div class="main">
-  <section class="display">
-     Welcome, Henry!
-    <!-- Display Feedback information here -->
-   <div class="jumbotron text-center" *ngIf="submitted">
-    <h2>Thanks for your submission!</h2>
-    <p>We appreciate it!</p>
-    <h3>{{ diagnostic }}</h3>
-</div>
-    
+<div>
+
+  <div class="transaction-inputs">
     <!-- Display Customer Balance  -->
-  
-    <div><h4 class="options" id="balance"> {{ balance | number:0}}</h4></div>
-    <div>
-      <h4>Last 3 Transactions</h4>
-    </div>
-    <div *ngIf="isShow">
-    <ul>
-      <li *ngFor="let transaction of bankService.account.transactions | slice:0:3">
-        {{ transaction.date }} {{ transaction.type | uppercase }}  {{ transaction.amount }} {{ transaction.currency | uppercase }}
-      </li>
-    </ul>
-    </div>
-    
-  </section>
-  <aside class="options">
-    <!-- Add functionality to the buttons below -->
-    <!--<div>{{ input }}</div>-->
-    
-      <input type="number" min="1" max="1000"    [(ngModel)]="numberNew" />
-    <!--<input type="number" -->
-    <!--       min="0" max="99" value="{{initValue}}" >-->
-    <!--<input type="number" ng-model="amountNew" aria-label="amount">-->
-    
+    <div class="balance" id="balance"><label>Balance: {{ balanceFormatted }}</label></div>
+    <label>Amount: <input type="number" min="1" max="1000"    [(ngModel)]="numberNew" /></label>
+
     <ul class="options-list">
       <li class="options-item">
         <button *ngIf="balance > 1" (click)="onWithdraw()">Make a Widthdrawl</button>
@@ -44,5 +17,23 @@
         <button (click)="changeShow()">Transactions History</button>
       </li>
     </ul>
-  </aside>
+
+  </div>
+
+</div>
+
+<div class="transaction">
+      <section class="display">
+      Recent Transactions
+
+      
+      <div *ngIf="isShow">
+      <ul>
+      <li *ngFor="let transaction of bankService.account.transactions | slice:0:3">
+        {{ transaction.date }} {{ transaction.type | uppercase }}  {{ transaction.amount }} {{ transaction.currency | uppercase }}
+      </li>
+      </ul>
+      </div>
+
+      </section>
 </div>

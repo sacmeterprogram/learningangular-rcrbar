@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class BankService {
   bankService = "TEST";
-  bankName = 'Bank of San Diego';
+  bankName = 'Bank of Verisk';
   account: any = {
     fname: 'first name',
     lname: 'last name',
@@ -18,6 +18,7 @@ export class BankService {
       country: 'canada'
     },
     balance: 0.01,
+    balanceFormatted: "$ 0.01",
     currency: 'usd',
     transactions: [
       {
@@ -42,6 +43,10 @@ export class BankService {
   };
   getBalance(){
     return this.account.balance;
+  }
+
+  getBalanceFormatted(){
+    return this.account.balanceFormatted;
   }
   
 

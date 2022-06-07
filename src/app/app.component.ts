@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  bankName = 'Bank of Verisk';
+  bankName = 'Bank of ';
   account: any = {
     fname: 'first name',
     lname: 'last name',
@@ -19,6 +19,7 @@ export class AppComponent {
       country: 'canada'
     },
     balance: 0.01,
+    balanceFormatted: "$ 0.01",
     currency: 'usd',
     transactions: [
       {
