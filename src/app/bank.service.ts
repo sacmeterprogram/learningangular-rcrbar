@@ -17,26 +17,35 @@ export class BankService {
       zip: 12345,
       country: 'canada'
     },
-    balance: 0.01,
-    balanceFormatted: "$ 0.01",
+    balance: 302.00,
+    balanceFormatted: "$302.00",
     currency: 'usd',
     transactions: [
       {
-        date: '01-01-01',
-        type: 'withdrawal',
+        date: '03/06/2022 11:50:51 AM ',
+        type: 'deposit',
         amount: 200.00,
+        amountFormatted: "$200.00",
+        balance: 302.00,
+        balanceFormatted: "$302.00",
         currency: 'usd'
       },
       {
-        date: '02-02-02',
+        date: '02/06/2022 11:50:51 AM ',
         type: 'deposit',
         amount: 100.00,
+        amountFormatted: "$100.00",
+        balance: 102.00,
+        balanceFormatted: "$102.00",
         currency: 'usd'
       },
       {
-        date: '03-03-03',
+        date: '01/06/2022 11:50:51 AM ',
         type: 'withdrawal',
         amount: 2.00,
+        amountFormatted: "$2.00",
+        balance: 2.00,
+        balanceFormatted: "$2.00",
         currency: 'usd'
       }
     ]
@@ -49,6 +58,30 @@ export class BankService {
     return this.account.balanceFormatted;
   }
   
+  AddZero(num) {
+    return (num >= 0 && num < 10) ? "0" + num : num + "";
+  }
+
+  getDateTime(){
+    const now = new Date();
+    const strDateTime = [[this.AddZero(now.getDate()), 
+        this.AddZero(now.getMonth() + 1), 
+        now.getFullYear()].join("/"), 
+        [this.AddZero(now.getHours()), 
+        this.AddZero(now.getMinutes()),
+        this.AddZero(now.getSeconds())].join(":"), 
+        now.getHours() >= 12 ? "PM" : "AM"].join(" ");
+        return strDateTime;
+    }
+
+    formatAsCurrency(number){
+      if (number < 0){
+        return "("+Math.abs(number).toLocaleString('en-US', { style: 'currency', currency: 'USD' })+")";
+      } else {
+        return number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    }}
+  
+
 
    withdraw(amount){
     /*
@@ -57,9 +90,12 @@ export class BankService {
       */
       this.account.balance -= amount;
       this.account.transactions.unshift({
-      date: '03-03-02',
+      date: this.getDateTime(),
       type: 'withdraw',
       amount: amount,
+      amountFormatted: this.formatAsCurrency(amount),
+      balance: this.account.balance,
+      balanceFormatted: this.formatAsCurrency(this.account.balance),
       currency: 'usd'
       });
     /*
@@ -74,9 +110,12 @@ export class BankService {
   deposit(amount){
     this.account.balance += amount;
     this.account.transactions.unshift({
-      date: '03-03-02',
+      date: this.getDateTime(),
       type: 'deposit',
       amount: amount,
+      amountFormatted: this.formatAsCurrency(amount),
+      balance: this.account.balance,
+      balanceFormatted: this.formatAsCurrency(this.account.balance),
       currency: 'usd'
     })
     

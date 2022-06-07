@@ -6,7 +6,7 @@
 
 .transaction-inputs{
   text-align:left;
-  width:300px;
+  width:400px;
 }
 
 .display {
@@ -40,6 +40,7 @@ section {
   background-color: #737679;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
   border-radius: 5px;
+  font-size:12px;
   padding: 15px;
 }
 
@@ -49,4 +50,8 @@ section {
   display:flex;
   flex-flow:row nowrap;
   list-style:none;
+}
+table{
+  table-layout: fixed;
+
 }

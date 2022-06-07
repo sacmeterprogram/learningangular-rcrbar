@@ -9,34 +9,25 @@ import { ContactComponent } from '../contact/contact.component';
 })
 export class AtmComponent implements OnInit{
   balance: number;
-  balanceFormatted: string;
+  balanceFormatted: string = "$302.00";
   amount: number = 100;
   @Input() numberNew: number = 1;
   
   constructor(public bankService: BankService) { 
+    
     console.log(bankService);
   }
   
   onDeposit(){
     this.bankService.deposit(this.numberNew);
     this.balance = this.bankService.getBalance();
-    this.balanceFormatted = this.onBalance(this.balance);
-  }
-
-  onBalance(number){
-    this.balanceFormatted = number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    if (number < 0){
-      return "("+Math.abs(number).toLocaleString('en-US', { style: 'currency', currency: 'USD' })+")";
-    }else{
-      return number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    }
-    
+    this.balanceFormatted = this.bankService.formatAsCurrency(this.balance);
   }
 
   onWithdraw(){
     this.bankService.withdraw(this.numberNew);
     this.balance = this.bankService.getBalance();
-    this.balanceFormatted = this.onBalance(this.balance);
+    this.balanceFormatted = this.bankService.formatAsCurrency(this.balance);
   }
 
   

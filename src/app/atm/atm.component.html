@@ -13,11 +13,7 @@
       <li class="options-item">
         <button (click)="onDeposit()">Deposit Money</button>
       </li>
-      <li class="options-item">
-        <button (click)="changeShow()">Transactions History</button>
-      </li>
     </ul>
-
   </div>
 
 </div>
@@ -25,12 +21,21 @@
 <div class="transaction">
       <section class="display">
       Recent Transactions
-      <div *ngIf="isShow">
-      <ul>
-      <li *ngFor="let transaction of bankService.account.transactions | slice:0:3">
-        {{ transaction.date }} {{ transaction.type | uppercase }}  {{ transaction.amount }} {{ transaction.currency | uppercase }}
-      </li>
-      </ul>
+      <div>
+        <table>
+          <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Balance</th>
+            </tr>
+      <tr *ngFor="let transaction of bankService.account.transactions | slice:0:3">
+        <td>{{ transaction.date }}</td> 
+        <td>{{ transaction.type | uppercase }}</td>
+        <td>{{ transaction.amountFormatted }}</td>
+        <td>{{ transaction.balanceFormatted }}</td>
+      </tr>
+      </table>
       </div>
 
       </section>
